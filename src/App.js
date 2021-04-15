@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Wilders from './Wilders.js'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <div className="container">
+          <h1>Wilders Book</h1>
+        </div>
       </header>
+      <main className="container">
+        <h2>Wilders</h2>
+        <section className="card-row">
+          <Wilders />
+        </section>
+      </main>
+      <footer>
+        <div className="container">
+          <p>&copy; 2020 Wild Code School</p>
+        </div>
+      </footer>
     </div>
   );
 }
