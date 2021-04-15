@@ -1,5 +1,6 @@
 import './App.css';
 import Wilder from './Wilder.js'
+import { Header, Footer, Container, CardRow, Input, Form, Label, Button, Error} from "./styles/elements";
 import AddWilder from './AddWilder.js'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
@@ -24,11 +25,11 @@ const App =() =>  {
 
   return (
     <div>
-      <header>
+      <Header>
         <div className="container">
           <h1>Wilders Book</h1>
         </div>
-      </header>
+      </Header>
       <main className="container">
         <AddWilder />
         <h2>Wilders</h2>
@@ -36,11 +37,11 @@ const App =() =>  {
             {wilders.map((el)=> <Wilder key={el._id} {...el}/>)}
         </section>
       </main>
-      <footer>
+      <Footer>
         <div className="container">
           <p>&copy; 2020 Wild Code School</p>
         </div>
-      </footer>
+      </Footer>
     </div>
   );
 }

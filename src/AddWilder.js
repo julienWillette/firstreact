@@ -1,15 +1,18 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, loadIcon } from 'react'
+import { Container, CardRow, Input, Form, Label, Button, Error} from "./styles/elements";
 
 function AddWilder() {
     const [name, setName] = useState("");
     const [city, setCity] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     return (
-      <form
+      <Form
         onSubmit={async (e) => {
           e.preventDefault();
           try {
+              setLoading(true);
             const result = await axios.post(
                 "http://localhost:3000/api/wilder/create",
                 {
@@ -27,28 +30,36 @@ function AddWilder() {
               }else {
                   setError(error.message);
               }
+          } finally {
+              setLoading(false);
           }
         }}
       >
-        <label htmlFor="name-input">Name :</label>
-        <input
+        <Label htmlFor="name-input">Name :</Label>
+        <Input
           id="name-input"
           type="text"
           placeholder="Type the name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="city-input">City :</label>
-        <input
+        <Label htmlFor="city-input">City :</Label>
+        <Input
           id="city-input"
           type="text"
           placeholder="Type the city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {error !== "" && <p>{error}</p>}
-        <button>Add</button>
-      </form>
+        {error !== "" && <Error>{error}</Error>}
+        <Button showLoading={loading}>
+        {loading ? (
+            <img src={loadIcon} alt="loading" />
+        ) : (
+            "Add"
+        )}
+        </Button>
+      </Form>
     );
 };
   export default AddWilder;
