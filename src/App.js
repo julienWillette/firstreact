@@ -1,5 +1,6 @@
 import './App.css';
 import Wilder from './Wilder.js'
+import AddWilder from './AddWilder.js'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 
@@ -9,7 +10,7 @@ const App =() =>  {
     const fetchData = async () => {
       try {
         const result = await axios(
-          "http://localhost:3001/api/wilder/read"
+          "http://localhost:3000/api/wilder/read"
         );
         console.log(result.data.result);
         setWilders(result.data.result);
@@ -29,6 +30,7 @@ const App =() =>  {
         </div>
       </header>
       <main className="container">
+        <AddWilder />
         <h2>Wilders</h2>
         <section className="card-row">
             {wilders.map((el)=> <Wilder key={el._id} {...el}/>)}
