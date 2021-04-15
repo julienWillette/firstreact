@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, loadIcon } from 'react'
-import { Container, CardRow, Input, Form, Label, Button, Error} from "./styles/elements";
+import { Input, Form, Label, Button, Error} from "./styles/elements";
 
 function AddWilder() {
     const [name, setName] = useState("");
@@ -25,8 +25,8 @@ function AddWilder() {
                 setError("");
             }
           }catch (error) {
-              if (error.response) {
-                  setError(error.response.data.message);
+              if (error.response) { 
+                  setError(error.message);
               }else {
                   setError(error.message);
               }
