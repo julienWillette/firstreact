@@ -1,7 +1,25 @@
 import './App.css';
-import Wilders from './Wilders.js'
+import Wilder from './Wilder.js'
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 
-function App() {
+const App =() =>  {
+  const [wilders, setWilders] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios(
+          "http://localhost:3001/api/wilder/read"
+        );
+        console.log(result.data.result);
+        setWilders(result.data.result);
+      }catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -13,7 +31,7 @@ function App() {
       <main className="container">
         <h2>Wilders</h2>
         <section className="card-row">
-          <Wilders />
+            {wilders.map((el)=> <Wilder key={el._id} {...el}/>)}
         </section>
       </main>
       <footer>

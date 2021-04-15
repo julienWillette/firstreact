@@ -1,31 +1,16 @@
 import imageReact from "./imageReact.jpeg"
 import PropTypes from "prop-types"
-import Skills from "./Skills.js"
+import Skill from "./Skill.js"
 
-const Wilder = ({name, description}) => {
-  const skills = [
-    {
-      name: "Javascript",
-      votes: 8,
-    },
-    {
-      name: "Nodes",
-      votes: 3,
-    },
-    {
-      name: "CSS",
-      votes: 12,
-    }
-  ]
+const Wilder = ({name, skills}) => {
   return (
     <article className="card">
       <img src={imageReact} alt="Guy avatar" />
       <h3>{name}</h3>
-      <p>{description}</p>
       <h4>Wild Skills</h4>
       <ul className="skills">
         {skills.map((skill) => {
-          return <Skills name={skill.name} votes={skill.votes} />;
+          return <Skill key={skill._id} {...skill} />;
         })}
       </ul>
     </article>
